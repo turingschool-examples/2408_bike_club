@@ -9,7 +9,6 @@ class BikeClub
   end
 
   def add_biker(biker)
-    # array of Biker objects
     @bikers << biker
     @bikers = @bikers.uniq
   end
