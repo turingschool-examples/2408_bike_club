@@ -44,7 +44,7 @@ RSpec.describe BikeClub do
         @bike_club.add_biker(@biker)
         @bike_club.add_biker(@biker2)
     
-        expect(@bike_club.best_time(@ride2)).to eq(@biker)
+        expect(@bike_club.best_time(@ride2)).to eq([@biker])
       end
     
       it 'can tell which bikers are eligible for a ride' do
