@@ -89,4 +89,26 @@ RSpec.describe BikeClub do
     end
   end
 
+  # describe '#group_rice' do
+  #   it 'can record a group ride' do #eligible memebers start at same time in minutes, stop times are different ane use a different current time 
+  #                                   #records all times by adding the ride with their respective times and the ride object
+  #   end
+  # end
+
+  describe '#self.best_rider' do
+    it 'can show the best time for a ride accross all bike club instances' do
+      @bike_club1.add_biker(@biker1)
+      @bike_club2.add_biker(@biker2)
+
+      @biker1.log_ride(@ride2, 67.3)
+      @biker1.log_ride(@ride2, 65.2)
+      @biker1.log_ride(@ride2, 62.1)
+
+      @biker2.log_ride(@ride2, 66.2)
+      @biker2.log_ride(@ride2, 63.2)
+
+      expect(BikeClub.best_rider(@ride2)).to eq(@biker1)
+    end
+  end
+
 end
