@@ -5,6 +5,7 @@ require 'pry'
 RSpec.describe Biker do
   before(:each) do
     @biker = Biker.new("Kenny", 30)
+    @biker2 = Biker.new("Athena", 15)
     @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
     @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
   end
@@ -36,6 +37,13 @@ RSpec.describe Biker do
 
       expect(@biker.rides[@ride1]).to eq([92.5, 91.1])
       expect(@biker.rides[@ride2]).to eq([60.9, 61.6])
+    end
+
+    it 'doesnt log rides if the biker doesnt know terrain' do
+      @biker2.log_ride(@ride1, 97.0)
+      @biker2.log_ride(@ride2, 67.0)
+
+      expect(@biker2.rides).to eq({})
     end
   end
 
