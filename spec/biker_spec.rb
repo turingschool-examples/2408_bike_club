@@ -75,15 +75,23 @@ RSpec.describe Biker do
         end
 
         it 'can log multiple rides' do
+            @biker.learn_terrain!(:gravel)
+            @biker.learn_terrain!(:hills)
             @biker.log_ride(@ride1, 92.5)
             @biker.log_ride(@ride1, 91.1)
             @biker.log_ride(@ride2, 60.9)
-        
             @biker.log_ride(@ride2, 61.6)
+
+            expect(@biker.rides).to include(@ride1)
+            expect(@biker.rides[@ride1].length).to eq(2)
         end
 
         it 'does not log rides if they exceed a bikers max distance' do
+            @biker2.learn_terrain!(:gravel)
+            @biker2.log_ride(@ride2, 65.0)
+
             expect(@biker2.log_ride(@ride1, 95.0)).to eq(false)
+            expect(@biker2.rides[@ride2].length).to eq(1)
         end
 
     end
