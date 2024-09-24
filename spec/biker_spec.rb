@@ -20,8 +20,6 @@ RSpec.describe Biker do
             expect(@biker2.max_distance).to eq(15)
             expect(@biker1.rides).to eq({})
             expect(@biker2.rides).to eq({})
-            expect(@biker1.acceptable_terrain).to eq([])
-            expect(@biker2.acceptable_terrain).to eq([])
         end
     end
 
@@ -38,6 +36,23 @@ RSpec.describe Biker do
             @biker1.learn_terrain!(:hills)
             expect(@biker1.acceptable_terrain).to eq([:gravel, :hills])
             expect(@biker2.acceptable_terrain).to eq([])
+        end
+    end
+
+    describe 'it can log rides' do
+        it 'starts with no rides' do
+            expect(@biker1.rides).to eq({})
+            expect(@biker2.rides).to eq({})
+        end
+
+        it 'can log rides' do 
+            @biker1.log_ride(ride1, 92.5)
+            @biker1.log_ride(ride1, 92.5)
+            @biker1.log_ride(ride1, 91.1)
+            @biker1.log_ride(ride2, 60.9)
+            @biker1.log_ride(ride2, 61.6)
+            expect(@biker1.rides).to contain_instances_of(Ride)
+
         end
     end
 end
