@@ -53,6 +53,7 @@ RSpec.describe Biker do
             @biker1.log_ride(@ride2, 61.6)
             expect(@biker1.rides).to be_an_instance_of(Hash)
             expect(@biker1.rides.keys).to include(@ride1, @ride2)
+            expect(@biker2.rides).to eq({})
         end
     end
 end
