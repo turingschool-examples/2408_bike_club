@@ -6,6 +6,7 @@ RSpec.describe do
     before(:each) do
 
         @biker = Biker.new("Kenny", 30)
+        @biker2 = Biker.new("Athena", 15)
         @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
         @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
     end
@@ -66,6 +67,15 @@ describe '#biker' do
 
         expect(@biker.personal_record(@ride1)).to eq(91.1)
         expect(@biker.personal_record(@ride2)).to eq(60.9)
+    end
+
+    it 'can have another biker' do
+        @biker2 = Biker.new("Athena", 15)
+        @biker2.log_ride(@ride1, 97.0)
+        @biker.log_ride(@ride2, 67.0)
+
+        expect(@biker2.rides).to eq({})
+
     end
 end
 end

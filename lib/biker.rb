@@ -19,10 +19,12 @@ class Biker
     end
 
     def log_ride(ride, time)
-        @rides[ride] << time
-      end
+          @rides[ride] << time
+        end
 
     def personal_record(ride)
         @rides[ride].min
+
+    
 end
 end
