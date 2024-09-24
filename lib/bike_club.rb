@@ -11,4 +11,8 @@ class BikeClub
     @bikers << biker
     @bikers
   end
+
+  def most_rides
+    @bikers.max_by { |biker| biker.rides.values.sum(&:length) }
+  end
 end
