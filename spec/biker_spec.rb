@@ -1,13 +1,13 @@
 require 'spec_helper'
 RSpec.describe Biker do 
-    before(each:) do 
+    before(:each) do 
         @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
         @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
         @biker1 = Biker.new("Kenny", 30)
         @biker2 = Biker.new("Athena", 15)
     end
 
-    desribe 'initialize' do 
+    describe 'initialize' do 
         it 'exists' do
             expect(@biker1).to be_an_instance_of(Biker)
             expect(@biker2).to be_an_instance_of(Biker)
@@ -21,6 +21,22 @@ RSpec.describe Biker do
             expect(@biker1.rides).to eq({})
             expect(@biker2.rides).to eq({})
             expect(@biker1.acceptable_terrain).to eq([])
+            expect(@biker2.acceptable_terrain).to eq([])
+        end
+    end
+
+    describe 'it can learn terrain' do
+        it 'starts with no terrain' do
+            expect(@biker1.acceptable_terrain).to eq([])
+            expect(@biker2.acceptable_terrain).to eq([])
+        end
+
+        it 'can add terrain' do
+            @biker1.learn_terrain!(:gravel)
+            expect(@biker1.acceptable_terrain).to eq([:gravel])
+            expect(@biker2.acceptable_terrain).to eq([])
+            @biker1.learn_terrain!(:hills)
+            expect(@biker1.acceptable_terrain).to eq([:gravel, :hills])
             expect(@biker2.acceptable_terrain).to eq([])
         end
     end
