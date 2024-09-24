@@ -10,11 +10,23 @@ class Biker
         @rides = {}
     end
 
-    def log_ride
-
-
-
+    def log_ride (ride, time)
+        if @acceptable_terrain.include?(ride.terrain) && ride.distance <= @max_distance
+            rides[ride] ||= [] #makes an array for the ride
+            rides[ride] << time #put in time to the array for that specific ridw
+        end
     end
 
-    def personal_record
+    def learn_terrain(terrain)
+        @acceptable_terrain << terrain
+    end
+
+    def personal_record(ride)
+
+        if @rides.key?(ride)
+          @rides[ride].min #smallest time
+        else
+          false 
+        end
+    end
 end

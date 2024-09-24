@@ -17,27 +17,30 @@ RSpec.describe Biker do
         end
 
         it 'can learn terrain' do 
-            @biker2.learn_terrain!(:gravel)
-            @biker2.learn_terrain!(:hills)
+            @biker2.learn_terrain(:gravel)
+            @biker2.learn_terrain(:hills)
 
-            expect(@biker2.acceptable_terrain).to eq[:gravel, :hills]
-            expect(@biker.acceptable_terrain).to eq[]
+            expect(@biker2.acceptable_terrain).to eq([:gravel, :hills])
+            expect(@biker.acceptable_terrain).to eq([])
         end
 
         it 'can log rides' do 
-            @biker.learn_terrain!(:gravel)
-            @biker.learn_terrain!(:hills)
+            @biker.learn_terrain(:gravel)
+            @biker.learn_terrain(:hills)
             @biker.log_ride(@ride1, 92.5)
             @biker.log_ride(@ride2, 61.6)
             @biker2.log_ride(@ride1, 97.9)
 
-            expect(@biker.rides).to eq('g')
+            expect(@biker.rides).to eq({@ride1 => [92.5], @ride2 => [61.6]})
+            expect(@biker2.rides).to eq({})
         end
-           
+         
+        it 'can have personal records' do 
+            @biker.learn_terrain(:hills)
+            @biker.log_ride(@ride1, 92.5)
+            @biker.log_ride(@ride1, 88.0)
 
-
-
-
-
-
+            expect(@biker.personal_record(@ride1)).to eq(88.0) 
+            expect(@biker.personal_record(@ride2)).to eq false
+        end
 end
