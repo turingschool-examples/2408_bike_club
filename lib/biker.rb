@@ -12,6 +12,9 @@ class Biker
     end
 
     def log_ride(ride, time)
+        if ride.total_diatance < @max_distance && acceptable_terrain.include?(ride.terrain)
         @rides[ride] = time
+        else 
+        end
     end
 end
