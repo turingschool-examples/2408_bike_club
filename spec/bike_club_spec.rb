@@ -96,4 +96,28 @@ RSpec.describe BikeClub do
       expect(@club.group_rides).to include(result)
     end
   end
+
+  describe '#finish_ride' do
+    it 'logs each bikers fininsh time and calculates ride time' do
+      @biker.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:gravel)
+
+      @club.add_biker(@biker)
+      @club.add_biker(@biker2)
+      
+      start_time = Time.now
+      allow(Time).to receive(:now).and_return(start_time)
+
+      @club.record_group_ride(@ride2)
+
+      finish_time = start_time + 30 * 60
+      allow(Time).to receive(:now).and_return(finish_time)
+
+      @club.finish_ride(@biker)
+
+      expected_duration = (finish_time - start_time) / 60
+
+      expect(@biker.rides(@ride2)).to eq(expected duration)
+    end
+  end
 end
