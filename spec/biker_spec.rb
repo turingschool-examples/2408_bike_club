@@ -23,5 +23,15 @@ describe '#biker' do
 
         expect(@biker.max_distance).to eq(30)
     end
+
+    it 'starts with an empty hash of rides' do
+
+        expect(@biker.rides).to eq({})
+    end
+
+    it 'starts with an empty array of acceptable terrain' do
+
+        expect(@biker.acceptable_terrain).to eq([])
+    end
 end
 end
