@@ -7,6 +7,7 @@ class BikeClub
 
     def add_biker(biker)
         @bikers << biker
+        @bikers
     end
 
     def most_rides
@@ -17,5 +18,8 @@ class BikeClub
         @bikers.select { |biker| biker.can_ride?(ride)}
     end
 
-    
+    def best_time(ride)
+        eligible_bikers = bikers_eligible(ride)
+        eligible_bikers.min_by { |biker| biker.personal_record(ride) || Float::INFINITY}
+    end
 end
