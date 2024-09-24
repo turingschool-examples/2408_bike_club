@@ -1,9 +1,9 @@
 class Ride
-    attr_reader name:, distance:, terrain:, loop:
+    attr_reader :name, :distance, :terrain
     def initialize(info)
-        @name = info[name:]
-        @distance = info[distance:]
-        @terrain = [terrain:]
-        @loop = info[loop:]
+        @name = info[:name]
+        @distance = info[:distance]
+        @terrain = info[:terrain]
+        @loop = info[:loop]
     end
 end
