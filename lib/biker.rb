@@ -10,4 +10,8 @@ class Biker
     def learn_terrain!(terrain)
         @acceptable_terrain << terrain
     end
+
+    def log_ride(ride, time)
+        @rides[ride] = time
+    end
 end
