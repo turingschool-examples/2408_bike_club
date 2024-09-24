@@ -74,4 +74,26 @@ RSpec.describe BikeClub do
       expect(@club.bikers_eligible(@ride2)).to eq([@biker2])
     end
   end
+
+  describe '#record_group_ride' do
+    it 'records a group ride' do
+      @biker.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:gravel)
+
+      @club.add_biker(@biker)
+      @club.add_biker(@biker2)
+
+      start_time = Time.now
+      allow(Time).to receive(:now).and_return(start_time)
+
+      result = (@club.record_group_ride(@ride2))     
+
+      expect(result).to be_a(Hash)
+      expect(result[:start_time]).to eq(start_time)
+      expect(result[:ride]).to eq(@ride2)
+      expect(result[:members]).to include(@biker, @biker2)
+
+      expect(@club.group_rides).to include(result)
+    end
+  end
 end
