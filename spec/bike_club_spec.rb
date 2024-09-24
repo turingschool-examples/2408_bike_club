@@ -62,4 +62,24 @@ RSpec.describe BikeClub do
       expect(@club.bikers_eligible(@ride1)).to eq([@biker1])
     end
   end
+
+  describe 'record group ride' do
+    before(:each) do
+      @biker3 = Biker.new("Himanshu", 4)      
+      @club.add_biker(@biker1)
+      @club.add_biker(@biker2)
+      @club.add_biker(@biker3)
+      @biker1.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:gravel)
+    end
+    it 'records group ride with start time for eligible members' do
+      allow(Date).to receive(:today).and_return(Date.new(2005, 10, 31))
+      allow(Time).to receive(:now).and_return(Time.new(2005, 10, 31, 08, 00, 30))
+
+      finish = @club.record_group_ride(ride)
+      expect(finish[:start_time].strftime("%m/%d/%Y %H:%M:%S")).to eq("10/31/2005 08:00:30")
+      expect(finish[:ride]).to eq(ride)
+      expect(finish[:members]).to eq([@biker1, @biker2])
+      expect(finish[:members].include?(@biker3)).to eq(false)
+    end
 end
