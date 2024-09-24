@@ -18,8 +18,6 @@ class Biker
     if @acceptable_terrain.include?(ride.terrain) && ride.total_distance <= @max_distance
       @rides[ride] ||= []
       @rides[ride] << ride_time
-    else
-      @rides = {}
     end
   end
 
