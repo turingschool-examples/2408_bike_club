@@ -7,6 +7,7 @@ class BikeClub
 
     def add_bikers(biker)
       @bikers << biker
+      return @bikers
     end
 
 end
