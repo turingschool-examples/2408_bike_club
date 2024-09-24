@@ -100,7 +100,7 @@ RSpec.describe BikeClub do
     it 'logs ride times for individual bikers' do
       allow(Time).to receive(:now).and_return(Time.new(2005, 10, 31, 8, 00, 30))
       @club.record_group_ride(@ride2)
-      allow(Time).to receive(:now).and_return(Time.new(2005, 10, 31, 9, 04, 22))
+      allow(Time).to receive(:now).and_return(Time.new(2005, 10, 31, 9, 04, 33))
       @club.finish_ride(@biker2)
       allow(Time).to receive(:now).and_return(Time.new(2005, 10, 31, 9, 15, 44))
       @club.finish_ride(@biker1)
