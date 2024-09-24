@@ -22,5 +22,10 @@ describe '#ride' do
 
         expect(@ride1.distance).to eq(10.7)
     end
+
+    it 'can return terrain' do
+
+        expect(@ride1.terrain).to eq(:hills)
+    end
 end
 end
