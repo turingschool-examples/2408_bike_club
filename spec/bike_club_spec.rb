@@ -5,6 +5,7 @@ RSpec.describe BikeClub do
         @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
         @biker1 = Biker.new("Kenny", 30)
         @biker2 = Biker.new("Athena", 15)
+        @biker3 = Biker.new("Bob", 20)
         @club = BikeClub.new('Pauls CLub')
     end
 
@@ -40,6 +41,17 @@ RSpec.describe BikeClub do
             @biker1.log_ride(@ride1, 95)
             @biker2.log_ride(@ride1, 110)
             expect(@club.most_rides).to eq(@biker1)
+        end
+    end
+
+    describe "#bikers_eligible" do
+        it "returns bikers eligible for a given ride" do
+            @club.add_biker(@biker1)
+            @club.add_biker(@biker2)
+            @club.add_biker(@biker3)
+            @biker1.learn_terrain!(:hills)
+            @biker2.learn_terrain!(:hills)
+            expect(@club.bikers_eligible(@ride1)).to eq([@biker1, @biker2])
         end
     end
 end
