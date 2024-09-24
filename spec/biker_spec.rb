@@ -8,10 +8,15 @@ RSpec.describe do
         @biker = Biker.new("Kenny", 30)
     end
 
-describe '#ride' do
+describe '#biker' do
     it 'be an instance of' do
 
         expect(@biker).to be_an_instance_of(Biker)
+    end
+
+    it 'can return a name' do
+
+        expect(@biker.name).to eq("Kenny")
     end
 end
 end
