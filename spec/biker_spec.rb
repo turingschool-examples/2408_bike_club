@@ -10,6 +10,7 @@ RSpec.describe Biker do
     @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
   end
   
+  describe '#initialize' do
     it' exists and has attributes' do
       expect(@biker).to be_instance_of(Biker)
       expect(@biker.name).to eq("Kenny")
@@ -17,6 +18,7 @@ RSpec.describe Biker do
       expect(@biker.rides).to eq({})
       expect(@biker.acceptable_terrain).to eq([])
     end
+  end
   
   describe '#learn_terrain!' do
     it 'allows biker to learn terrain' do
