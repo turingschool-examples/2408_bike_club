@@ -27,10 +27,19 @@ class BikeClub
         biker_time_hash = {}
         @bikers.map do |biker|
             if biker.personal_record(ride) != false
-                biker_time_hash[biker] ||= 0
                 biker_time_hash[biker] = biker.personal_record(ride)
             end
         end
         biker_time_hash.key(biker_time_hash.values.min)
+    end
+
+    def bikers_eligible(ride)
+        eligible =[]
+        @bikers.map do |biker|
+            if biker.acceptable_terrain.include?(ride.terrain) && ride.total_distance <= biker.max_distance
+                eligible << biker
+            end
+        end
+        eligible
     end
 end
