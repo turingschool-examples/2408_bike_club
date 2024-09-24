@@ -32,7 +32,7 @@ class Biker
   end
 
   def personal_record(ride)
-    return false unless @rides[ride]
+    return false unless @rides.key?(ride)
 
     ride_min = @rides[ride].min
     puts "#{@name}'s best time for #{ride.name}
