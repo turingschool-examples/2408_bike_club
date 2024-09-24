@@ -45,6 +45,16 @@ RSpec.describe Biker do
 
       expect(@biker2.rides).to eq({})
     end
+
+    it 'doesnt log a ride because of max distance' do
+      @biker2.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:hills)
+      @biker2.log_ride(@ride1, 95.0)
+      @biker2.log_ride(@ride2, 65.0)
+
+      expect(@biker2.rides[@ride1]).to be_nil
+      expect(@biker2.rides[@ride2]).to eq([65])
+    end
   end
 
   describe '#personal_record' do
