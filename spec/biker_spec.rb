@@ -38,8 +38,30 @@ RSpec.describe Biker do
         @ride1 => [92.5, 91.1],
         @ride2 => [60.9, 61.6]
       }
-      expect(@biker.rides).to eq(test_rides) 
-      expect(@biker2.rides).to eq({})
+      expect(@biker.rides).to eq(test_rides)      
     end
   end
+
+  describe 'pr' do
+    it 'can store best ride time' do
+      expect(@biker.personal_record(@ride1)).to eq(91.1)
+      expect(@biker.personal_record(@ride2)).to eq(60.9)
+    
+    end
+  end
+
+  descibe 'can do rides' do
+    it 'cannot do all rides depending on skill' do    
+      @biker2.learn_terrain!(:hills)
+      @biker2.log_ride(ride1, 95.0)
+      expect(@biker2.rides).to eq({})
+      @biker2.log_ride(ride2, 65.0)
+      expect(@biker2.rides).to eq({})
+      @biker2.learn_terrain!(:gravel)
+      @biker2.log_ride(ride2, 65.0)
+      expect(@biker2.rides).to eq({ @ride2 => [65.0]})
+      expect(@biker2.personal_record(@ride2)).to eq(65.0)
+      expect(@biker2.personal_record(@ride1)).to be false
+    end
+  end      
 end
