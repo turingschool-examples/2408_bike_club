@@ -27,5 +27,10 @@ describe '#ride' do
 
         expect(@ride1.terrain).to eq(:hills)
     end
+
+    it 'can determine if ride is a loop' do
+
+        expect(@ride1.loop?).to eq(false)
+    end
 end
 end
