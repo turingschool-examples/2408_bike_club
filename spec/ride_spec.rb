@@ -13,9 +13,14 @@ describe '#ride' do
         expect(@ride1).to be_an_instance_of(Ride)
     end
 
-    it 'can have a name' do
+    it 'can return a name' do
 
         expect(@ride1.name).to eq("Walnut Creek Trail")
+    end
+
+    it 'can return distance' do
+
+        expect(@ride1.distance).to eq(10.7)
     end
 end
 end
