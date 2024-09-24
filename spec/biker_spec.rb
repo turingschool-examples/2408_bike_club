@@ -34,20 +34,24 @@ RSpec.describe Biker do
 
     describe '#log_ride' do
         it 'can log rides' do
+            @biker.learn_terrain!(:gravel)
+            @biker.learn_terrain!(:hills)
             @biker.log_ride(@ride1, 92.5)
             @biker.log_ride(@ride1, 91.1)
             @biker.log_ride(@ride2, 60.9)
             @biker.log_ride(@ride2, 61.6)
 
             rides_hash = {
-                        <Ride:0x00007fc62ca32a10...> => [92.5, 91.1],
-                        <Ride:0x00007fc62cb42ba8...> => [60.9, 61.6]
+                        @ride1 => [92.5, 91.1],
+                        @ride2 => [60.9, 61.6]
                          }
 
             expect(@biker.rides).to eq(rides_hash)
         end
 
         it 'can determine personal records by ride' do
+            @biker.learn_terrain!(:gravel)
+            @biker.learn_terrain!(:hills)
             @biker.log_ride(@ride1, 92.5)
             @biker.log_ride(@ride1, 91.1)
             @biker.log_ride(@ride2, 60.9)
@@ -70,7 +74,7 @@ RSpec.describe Biker do
             @biker2.log_ride(@ride2, 65.0)
 
             expect(@biker2.acceptable_terrain).to eq([:gravel, :hills])
-            expect(@biker2.rides).to eq({@ride2: [65.0]})
+            expect(@biker2.rides).to eq({@ride2 => [65.0]})
         end
 
     end
