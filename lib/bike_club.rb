@@ -15,9 +15,7 @@ class BikeClub
   end
 
   def most_rides
-    # Biker object
-    @bikers.each do |biker|
-    end
+    @bikers.max_by { |biker| biker.rides.count }
   end
 
   def best_time(ride)

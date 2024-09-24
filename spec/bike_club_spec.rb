@@ -34,6 +34,14 @@ RSpec.describe BikeClub do
     end
   end
 
+  describe '#most_rides' do
+    it 'returns biker with most rides' do
+      @club.add_biker(@kenny)
+      @club.add_biker(@athena)
+      expect(@club.most_rides).to eq @kenny
+    end
+  end
+
   describe '#best_time' do
     it 'can return the best time for a ride' do
       @club.add_biker(@kenny)
