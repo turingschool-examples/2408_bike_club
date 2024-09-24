@@ -25,7 +25,6 @@ class Biker
       times.min
     else
       false
-    end
-    
+    end  
   end
 end

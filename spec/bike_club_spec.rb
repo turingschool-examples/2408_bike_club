@@ -72,5 +72,4 @@ RSpec.describe BikeClub do
       expect(@bike_club1.bikers_eligible(@ride1)).to eq([@biker1, @biker3])
     end
   end
-
 end
