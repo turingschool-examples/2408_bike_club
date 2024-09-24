@@ -53,8 +53,11 @@ RSpec.describe BikeClub do
       @biker1.log_ride(@ride1, 90.2)
       @biker1.log_ride(@ride1, 89.2)
       @biker2.log_ride(@ride2, 65.2)
+      @biker2.log_ride(@ride2, 62.2)
+      @biker2.log_ride(@ride2, 60.2)
 
-      expect(@bike_club1.most_rides).to eq(@biker1)
+
+      expect(@bike_club1.most_rides).to eq(@biker2)
     end
   end
 
