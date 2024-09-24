@@ -69,11 +69,11 @@ RSpec.describe Biker do
       @biker1.learn_terrain!(:hills)
       @biker1.log_ride(@ride1, 92.5)
 
-      expect(@biker1.rides).to eq({@ride1 => 92.5})
+      expect(@biker1.rides).to eq({@ride1 => [92.5]})
       expect(@biker2.rides).to eq({})
     end
 
-    xit 'can log multiple of the same ride' do
+    it 'can log multiple of the same ride' do
       @biker1.learn_terrain!(:hills)
       @biker1.log_ride(@ride1, 92.5)
       @biker1.log_ride(@ride1, 91.2)
@@ -81,7 +81,7 @@ RSpec.describe Biker do
       expect(@biker1.rides).to eq({@ride1 => [92.5, 91.2]})
     end
 
-    xit 'can log different rides' do
+    it 'can log different rides' do
       @biker1.learn_terrain!(:hills)
       @biker1.learn_terrain!(:gravel)
 
@@ -94,7 +94,7 @@ RSpec.describe Biker do
   end
 
   describe '#personal_record' do
-    xit 'can report a personal record' do
+    it 'can report a personal record' do
       @biker1.learn_terrain!(:hills)
       @biker1.log_ride(@ride1, 92.5)
 
@@ -105,7 +105,7 @@ RSpec.describe Biker do
       expect(@biker1.personal_record(@ride1)).to eq(91.2)
     end
 
-    xit 'returns false if rider hasn"t done that ride' do
+    it 'returns false if rider hasn"t done that ride' do
       @biker1.learn_terrain!(:hills)
       expect(@biker1.personal_record(@ride1)).to eq(false)
 
