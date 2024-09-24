@@ -46,13 +46,13 @@ RSpec.describe Biker do
         end
 
         it 'can log rides' do 
-            @biker1.log_ride(ride1, 92.5)
-            @biker1.log_ride(ride1, 92.5)
-            @biker1.log_ride(ride1, 91.1)
-            @biker1.log_ride(ride2, 60.9)
-            @biker1.log_ride(ride2, 61.6)
-            expect(@biker1.rides).to contain_instances_of(Ride)
-
+            @biker1.log_ride(@ride1, 92.5)
+            @biker1.log_ride(@ride1, 92.5)
+            @biker1.log_ride(@ride1, 91.1)
+            @biker1.log_ride(@ride2, 60.9)
+            @biker1.log_ride(@ride2, 61.6)
+            expect(@biker1.rides).to be_an_instance_of(Hash)
+            expect(@biker1.rides.keys).to include(@ride1, @ride2)
         end
     end
 end
