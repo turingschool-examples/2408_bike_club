@@ -19,9 +19,6 @@ class BikeClub
         end
     end
 
-
-    end
-
     def best_time(ride)
         personalrecords = {}
         @bikers.each do |biker|
