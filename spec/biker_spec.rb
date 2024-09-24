@@ -7,7 +7,7 @@ RSpec.describe Biker do
     @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
     @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
     @biker1 = Biker.new("Kenny", 30)
-    @biker2 = Biker.new("Kenny", 30)
+    @biker2 = Biker.new("Wally", 12)
   end
 
   describe '#initialize' do
@@ -66,6 +66,7 @@ RSpec.describe Biker do
 
   describe '#personal_record' do
     it 'can provide the users personal record for a ride' do
+      @biker1.learn_terrain!(:hills)
       expect(@biker1.personal_record(@ride1)).to eq(false)
       @biker1.log_ride(@ride1, 92.5)
       expect(@biker1.personal_record(@ride1)).to eq(92.5)
