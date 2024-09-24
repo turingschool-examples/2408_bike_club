@@ -30,4 +30,11 @@ class BikeClub
             return best_biker.name
         end
     end
+
+    def bikers_eligible(ride)
+        @bikers.find_all do |biker|
+            binding.pry
+            biker.acceptable_terrain.include?(ride.terrain) && ride.total_distance <= biker.max_distance
+        end
+    end
 end
