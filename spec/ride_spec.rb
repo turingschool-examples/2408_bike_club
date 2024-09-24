@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Ride do
   before(:each) do
-    @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain:})
+    @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
 
   end
 
@@ -27,3 +27,4 @@ RSpec.describe Ride do
       expect(@ride1.loop?).to eq(false)
     end
   end
+end
