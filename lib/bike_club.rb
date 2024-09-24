@@ -26,8 +26,9 @@ class BikeClub
                 personalrecords[biker] = biker.personal_record(ride)
                 
             end
-             personalrecords.max_by
-           
+             best = personalrecords.min_by { |biker, time| time }[0]
+
+           return best
         end    #biker personal record for given ride put it in as their name as the key, 
             #the record as the value and then find the highest value and return 
     end
