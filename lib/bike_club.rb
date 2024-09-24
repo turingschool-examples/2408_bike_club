@@ -1,9 +1,10 @@
 class BikeClub
-  attr_reader :name, :bikers
+  attr_reader :name, :bikers, :group_rides
 
   def initialize(name)
     @name = name
     @bikers = []
+    @group_rides = []
   end
 
   def add_biker(biker)
@@ -24,5 +25,18 @@ class BikeClub
     bikers.select do |biker|
       biker.acceptable_terrain.include?(ride.terrain) && ride.total_distance <= biker.max_distance
     end
+  end
+
+  def record_group_ride(ride)
+    eligible_bikers = bikers_eligible(ride)
+      
+    ride_data = {
+      start_time: Time.now,
+      ride: ride,
+      members: eligible_bikers
+    }
+
+    @group_rides << ride_data
+    ride_data
   end
 end
