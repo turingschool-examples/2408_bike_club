@@ -28,4 +28,8 @@ class Biker
   def can_do_ride?(ride)
     @acceptable_terrain.include?(ride.terrain) && ride.total_distance <= @max_distance
   end
+
+  def personal_record(ride)
+    @rides[ride]&.min || false
+  end
 end
