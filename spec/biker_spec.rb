@@ -28,10 +28,9 @@ RSpec.describe Biker do
 
   describe '#log_ride' do
     it 'can log a ride' do
-      expect(@athena.log_ride(@ride1, 97.0)).to eq false
-      # biker2 doesn't know this terrain yet
+      expect(@athena.log_ride(@ride1, 97.0)).to eq false # sad
       @athena.learn_terrain!(:gravel)
-      expect(@athena.log_ride(@ride2, 67.0)).to eq true
+      expect(@athena.log_ride(@ride2, 67.0)).to eq true # happy
       expect(@athena.rides).to eq({ @ride2 => [67.0] })
     end
   end
