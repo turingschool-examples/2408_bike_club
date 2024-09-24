@@ -1,4 +1,4 @@
-requre 'spec_helper'
+require 'spec_helper'
 Rspec.describe Ride do 
     before(:each) do
         ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
