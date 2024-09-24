@@ -88,16 +88,16 @@ RSpec.describe BikeClub do
   end
 
   describe 'finish ride' do
+    before(:each) do
+      @biker3 = Biker.new("Himanshu", 19)      
+      @club.add_biker(@biker1)
+      @club.add_biker(@biker2)
+      @club.add_biker(@biker3)
+      @biker1.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:gravel)
+      @biker3.learn_terrain!(:gravel)
+    end
     it 'logs ride times for individual bikers' do
-      before(:each) do
-        @biker3 = Biker.new("Himanshu", 19)      
-        @club.add_biker(@biker1)
-        @club.add_biker(@biker2)
-        @club.add_biker(@biker3)
-        @biker1.learn_terrain!(:gravel)
-        @biker2.learn_terrain!(:gravel)
-        @biker3.learn_terrain!(:gravel)
-      end
       allow(Time).to receive(:now).and_return(Time.new(2005, 10, 31, 8, 00, 30))
       @club.record_group_ride(@ride2)
       allow(Time).to receive(:now).and_return(Time.new(2005, 10, 31, 9, 04, 22))
@@ -107,8 +107,9 @@ RSpec.describe BikeClub do
       allow(Time).to receive(:now).and_return(Time.new(2005, 10, 31, 9, 36, 42))
       @club.finish_ride(@biker3)
 
-      expect(@biker1.rides[@ride]).to eq()
-      expect(@biker2.rides[@ride]).to eq()
-      expect(@biker3.rides[@ride]).to eq()
-
+      expect(@biker1.rides[@ride2]).to eq([75])
+      expect(@biker2.rides[@ride2]).to eq([64])
+      expect(@biker3.rides[@ride2]).to eq([96])
+    end
+  end
 end
