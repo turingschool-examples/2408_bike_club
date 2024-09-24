@@ -68,5 +68,15 @@ RSpec.describe Biker do
     expect(@biker.personal_record(@ride1)).to eq(91.1)
     expect(@biker.personal_record(@ride2)).to eq(60.9)
     end
+
+    it 'shows min times, only rides that rider can do' do
+      @biker2.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:hills)
+      @biker2.log_ride(@ride1, 95.0)
+      @biker2.log_ride(@ride2, 65.0)
+
+      expect(@biker2.personal_record(@ride1)).to eq (false)
+      expect(@biker2.personal_record(@ride2)).to eq (65.0)
+    end
   end
 end
