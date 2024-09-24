@@ -18,5 +18,10 @@ describe '#biker' do
 
         expect(@biker.name).to eq("Kenny")
     end
+
+    it 'can return the bikers max distance' do
+
+        expect(@biker.max_distance).to eq(30)
+    end
 end
 end
