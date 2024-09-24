@@ -4,4 +4,10 @@ class BikeClub
         @name = name
         @bikers = []
     end
+
+    
+
+    def most_rides
+        @bikers.max_by {|biker| biker.rides.values.sum(&:size)}
+    end
 end
