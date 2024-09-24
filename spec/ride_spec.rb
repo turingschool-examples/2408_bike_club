@@ -6,7 +6,8 @@ RSpec.describe Ride do
     @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
   end
   
-    it ' exists and has attributes' do
+  describe '#initialize' do
+    it 'exists and has attributes' do
       expect(@ride1).to be_instance_of(Ride)
       expect(@ride1.name).to eq("Walnut Creek Trail")
       expect(@ride1.distance).to eq(10.7)
@@ -21,7 +22,8 @@ RSpec.describe Ride do
       expect(@ride2.loop?).to eq(true)
       expect(@ride2.terrain).to eq(:gravel)
     end
-
+  end
+  
   describe '#total_distance' do
     it 'show total distance if it does not loop' do
       expect(@ride1.total_distance).to eq(21.4)
