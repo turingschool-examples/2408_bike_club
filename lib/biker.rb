@@ -8,13 +8,25 @@ class Biker
     end
 
     def learn_terrain!(terrain)
-        @acceptable_terrain << terrain
+        @acceptable_terrain << terrain unless @acceptable_terrain.include?(terrain)
     end
 
     def log_ride(ride, time)
-        if ride.total_diatance < @max_distance && acceptable_terrain.include?(ride.terrain)
-        @rides[ride] = time
-        else 
-        end
+       if can_ride?(ride)
+        @rides[ride] ||=[]
+        @rides[ride] << time
+        true
+       else
+        false
+       end
+    end
+
+    def personal_record(ride)
+       return false unless @rides.key?(ride) && !@rides[ride].empty?
+        @rides[ride].compact.min
+    end
+
+    def can_ride?(ride)
+        @acceptable_terrain.include?(ride.terrain) && ride.total_distance <= @max_distance
     end
 end
