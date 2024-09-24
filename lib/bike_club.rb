@@ -11,7 +11,7 @@ class BikeClub
   def add_biker(biker)
     # array of Biker objects
     @bikers << biker
-    # @bikers = @bikers.sort.uniq
+    @bikers = @bikers.uniq
   end
 
   def most_rides
@@ -26,13 +26,12 @@ class BikeClub
 
     @bikers.each do |biker|
       bikers_best = biker.personal_record(ride)
-      # best_for_ride = bikers_best if bikers_best > best_for_ride
       if bikers_best > best_for_ride
         best_for_ride = bikers_best
         best_biker = biker
       end
     end
-    # Biker object
+
     best_biker
   end
 
@@ -41,7 +40,6 @@ class BikeClub
     @bikers.each do |biker|
       eligible << biker if biker.acceptable_terrain.include?(ride.terrain)
     end
-    # array of Biker objects
     eligible
   end
 end
