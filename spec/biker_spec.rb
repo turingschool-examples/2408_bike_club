@@ -19,7 +19,7 @@ RSpec.describe Biker do
       expect(@biker.acceptable_terrain).to eq([])
     end
   end
-  
+
   describe '#learn_terrain!' do
     it 'allows biker to learn terrain' do
       @biker.learn_terrain!(:gravel)
@@ -61,7 +61,7 @@ RSpec.describe Biker do
 
   describe '#personal_record' do
     it 'shows min time for all rides done'do
-    @biker.learn_terrain!(:gravel)
+      @biker.learn_terrain!(:gravel)
       @biker.learn_terrain!(:hills)
       @biker.log_ride(@ride1, 92.5)
       @biker.log_ride(@ride1, 91.1)
