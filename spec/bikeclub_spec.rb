@@ -65,4 +65,20 @@ RSpec.describe BikeClub do
         expect(@bikeclub_1.best_time(@ride1)).to eq("Kenny")
         expect(@bikeclub_1.best_time(@ride2)).to eq("Kenny")
     end
+
+    it 'can determine eligible riders' do
+        @bikeclub_1.add_biker(@biker)
+        @bikeclub_1.add_biker(@biker2)
+
+        @biker.learn_terrain!(:gravel)
+        @biker.learn_terrain!(:hills)
+
+        @biker2.learn_terrain!(:gravel)
+
+        @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
+        @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+
+        expect(@bikeclub_1.bikers_eligible(@ride1)).to eq([@biker])
+        expect(@bikeclub_1.bikers_eligible(@ride1)).to eq([@biker, @biker2])
+    end
 end
