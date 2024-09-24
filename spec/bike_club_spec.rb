@@ -51,7 +51,8 @@ RSpec.describe BikeClub do
     describe '12. #best_time(ride)' do
         it 'can determine who has the best time for a ride' do
             @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 6, loop: false, terrain: :hills})
-
+            @ride2 = Ride.new({name: "Town Lake", distance: 10, loop: true, terrain: :gravel})
+            
             @biker1.learn_terrain(:gravel)
             @biker1.learn_terrain(:hills)
             @biker2.learn_terrain(:gravel)
@@ -75,6 +76,9 @@ RSpec.describe BikeClub do
 
     describe '13. #bikers_eligible(ride)' do
         it 'can determine who has the best time for a ride' do
+            @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 6, loop: false, terrain: :hills})
+            @ride2 = Ride.new({name: "Town Lake", distance: 10, loop: true, terrain: :gravel})
+
             @biker1.learn_terrain(:gravel)
             @biker1.learn_terrain(:hills)
             @biker2.learn_terrain(:gravel)
