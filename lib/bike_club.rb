@@ -36,4 +36,20 @@ class BikeClub
     @group_rides << group_ride
     group_ride
   end
+
+  def finish_ride(biker)
+    current_ride = @group_rides.last
+    return unless rider_part_of_ride?(biker, current_ride)
+
+    ride_time = calculate_ride_time(current_ride[:start_time])
+    biker.log_ride(current_ride[:ride], ride_time)
+  end
+
+  def rider_part_of_ride?(biker, ride)
+    ride && ride[:members].include?(biker)
+  end
+
+  def calculate_ride_time(start_time)
+    ((Time.now - start_time) / 60).to_i
+  end
 end
