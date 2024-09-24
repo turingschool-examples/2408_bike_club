@@ -25,4 +25,8 @@ RSpec.describe Biker do
   it 'can hold rides in a hash' do
     expect(@biker.rides).to eq({})
   end
+
+  it 'can list acceptable terrain' do
+    expect(@biker.acceptable_terrain).to eq([])
+  end
 end
