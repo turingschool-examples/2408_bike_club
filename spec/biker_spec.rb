@@ -58,8 +58,11 @@ RSpec.describe Biker do
             expect(@biker2.rides).to eq({})
         end
 
+        it 'cant bike on unknown terrain' do
+
         it 'cant bike further than max distance' do
-            @biker2.log_ride(@ride1, 100)
+            @biker2.learn_terrain!(:hills)
+            @biker2.log_ride(@ride1, 92.5)
             expect(@biker2.rides).to eq({})
         end
     end
