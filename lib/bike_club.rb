@@ -20,7 +20,17 @@ class BikeClub
                     ride_count_hash[biker] += ride[1].count
             end
         end
-        most_rides_biker = ride_count_hash.key(ride_count_hash.values.max)
-        most_rides_biker
+        ride_count_hash.key(ride_count_hash.values.max)
+    end
+
+    def best_time(ride)
+        biker_time_hash = {}
+        @bikers.map do |biker|
+            if biker.personal_record(ride) != false
+                biker_time_hash[biker] ||= 0
+                biker_time_hash[biker] = biker.personal_record(ride)
+            end
+        end
+        biker_time_hash.key(biker_time_hash.values.min)
     end
 end
