@@ -7,7 +7,10 @@ class Biker
         @max_distance = max_distance
         @rides = Hash.new(0)
         @acceptable_terrain = []
+    end
 
+    def learn_terrain!(terrain)
+        @acceptable_terrain << terrain
 
     end
 end

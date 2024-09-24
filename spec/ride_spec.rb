@@ -40,5 +40,5 @@ describe '#ride' do
         expect(@ride1.total_distance).to eq(21.4)
         expect(@ride2.total_distance).to eq(14.9)
     end
-end
+    end
 end
