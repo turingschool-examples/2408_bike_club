@@ -1,4 +1,4 @@
-require './bike_club'
+require './lib/bike_club'
 require './lib/ride'
 require './lib/biker'
 
