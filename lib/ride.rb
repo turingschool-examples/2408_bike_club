@@ -4,12 +4,12 @@ class Ride
         @name = info[:name]
         @distance = info[:distance]
         @terrain = info[:terrain]
-        @loop = info[:loop]
+        @is_loop = info[:loop]
     end
 
     def loop?
-        @loop
+        @is_loop
     end
 
-    
+
 end
