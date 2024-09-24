@@ -45,12 +45,12 @@ RSpec.describe BikeClub do
     it 'knows who has the best time on a ride' do
       @club.add_biker(@biker1)
       @club.add_biker(@biker2)
-      @biker1.learn_terrain!(:hills)
-      @biker2.learn_terrain!(:hills)
-      @biker1.log_ride(@ride1, 90)
-      @biker1.log_ride(@ride1, 88)
-      @biker2.log_ride(@ride1, 85)
-      expect(@club.most_rides).to eq(@biker2)
+      @biker1.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:gravel)     
+      @biker1.log_ride(@ride2, 90)
+      @biker1.log_ride(@ride2, 88)
+      @biker2.log_ride(@ride2, 85)
+      expect(@club.best_time(@ride2)).to eq(@biker2)
     end
   end
 end
