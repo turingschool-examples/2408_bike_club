@@ -59,6 +59,13 @@ RSpec.describe Biker do
         end
 
         it 'cant bike on unknown terrain' do
+            @biker1.log_ride(@ride1, 92.5)
+            @biker1.log_ride(@ride1, 92.5)
+            @biker1.log_ride(@ride1, 91.1)
+            @biker1.log_ride(@ride2, 60.9)
+            @biker1.log_ride(@ride2, 61.6)
+            expect(@biker1.rides.keys).to_not include(@ride1, @ride2)
+        end
 
         it 'cant bike further than max distance' do
             @biker2.learn_terrain!(:hills)
