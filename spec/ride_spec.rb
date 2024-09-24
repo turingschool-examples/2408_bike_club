@@ -32,5 +32,10 @@ describe '#ride' do
 
         expect(@ride1.loop?).to eq(false)
     end
+
+    it 'can return total distance' do
+
+        expect(@ride1.total_distance).to eq(21.4)
+    end
 end
 end
