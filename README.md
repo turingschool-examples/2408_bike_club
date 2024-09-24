@@ -145,10 +145,7 @@ pry(main)> biker2.personal_record(ride1)
 ```
 ## Iteration 3 - Bike Club
 
-Use TDD to create a `BikeClub` class that adds the following functionality:
 
-1. Each `BikeClub` has a name, as well as a way to read that data
-1. Each `BikeClub` has a list of Bikers, and the `BikeClub` can add new Bikers.
 
 Additionally, use TDD to add the following functionality to the `BikeClub` class. A passing challenge will complete at least one of the following. We recommend completing more than one if you have time.
 
