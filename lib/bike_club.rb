@@ -17,4 +17,12 @@ class BikeClub
           biker.rides.count
       end
     end
+
+    def best_time(ride)
+      return nil if @bikers.empty?
+
+      @bikers.min_by do |biker|
+        biker.rides.values.min
+      end
+    end
 end
