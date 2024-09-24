@@ -73,4 +73,18 @@ RSpec.describe Biker do
             expect(@biker2.rides).to eq({})
         end
     end
+
+    describe 'personal records' do
+        it 'can show personal records' do 
+            @biker1.learn_terrain!(:hills)
+            @biker1.learn_terrain!(:gravel)
+            @biker1.log_ride(@ride1, 92.5)
+            @biker1.log_ride(@ride1, 92.5)
+            @biker1.log_ride(@ride1, 91.1)
+            @biker1.log_ride(@ride2, 60.9)
+            @biker1.log_ride(@ride2, 61.6)
+            expect(@biker1.personal_record(@ride1)).to eq(91.1)
+            expect(@biker1.personal_record(@ride2)).to eq(60.9)
+        end
+    end
 end
