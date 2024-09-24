@@ -64,4 +64,31 @@ RSpec.describe BikeClub do
 
     expect(@bike_club.best_time(@ride2)).to eq(@biker)
   end
+
+  it 'can return an array of biker instances that are eligible for a given ride' do
+    @bike_club.add_bikers(@biker)
+    @bike_club.add_bikers(@biker2)
+
+    @biker.learn_terrain!(:gravel)
+    @biker.learn_terrain!(:hills)
+    @biker.log_ride(@ride1, 92.5)
+    @biker.log_ride(@ride1, 91.1)
+    @biker.log_ride(@ride2, 60.9)
+    @biker.log_ride(@ride2, 61.6)
+
+    expect(@biker.rides).to eq({ @ride1 => [92.5, 91.1], @ride2 => [60.9, 61.6]})
+
+    @biker2.learn_terrain!(:gravel)
+    @biker2.learn_terrain!(:hills)
+    @biker2.log_ride(@ride1, 95.0) # biker2 can't bike this distance
+    @biker2.log_ride(@ride2, 65.0) # biker2 knows this terrain and can bike this distance
+
+    expect(@biker2.rides).to eq({ @ride2 => [65.0] })
+    expect(@biker2.personal_record(@ride2)).to eq(65.0)
+    expect(@biker2.personal_record(@ride1)).to eq(false)
+
+
+    expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker])
+    expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker, @biker2])
+  end 
 end

@@ -25,4 +25,12 @@ class BikeClub
         biker.rides.values.min
       end
     end
+
+    def bikers_eligible(ride)
+      return nil if @bikers.empty?
+
+        @bikers.select do |biker|
+          biker.personal_record(ride) != false
+        end
+    end
 end
