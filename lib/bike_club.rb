@@ -1,11 +1,12 @@
 class BikeClub
 
-    attr_reader :name,
-                :bikers
-
+    attr_accessor   :name,
+                    :bikers
+    @@all_bike_clubs = []
     def initialize(name)
         @name = name
         @bikers = []
+        @@all_bike_clubs << self
     end
 
     def add_biker(biker)
@@ -41,5 +42,29 @@ class BikeClub
             end
         end
         eligible
+    end
+
+    # def record_group_ride(ride)
+    #     group_hash={}
+    #     group_hash[:start_time] = Time.now
+    #     group_hash[:ride] = ride
+    #     group_hash[:members] = bikers_eligible(ride)
+    #     #require "pry" ; binding.pry
+    # end
+
+    # def finish_group_ride(ride,biker)
+    #     finish_time = Time.now
+    #     biker.log_ride(ride)
+    # end
+
+    def self.best_time(ride)
+
+        biker_time_hash = {}
+        @@all_bike_clubs.map do |bike_club|
+            if bike_club.best_time(ride) != nil
+                biker_time_hash[bike_club.best_time(ride)] = bike_club.best_time(ride).personal_record(ride)
+            end
+        end
+        biker_time_hash.key(biker_time_hash.values.min)
     end
 end
