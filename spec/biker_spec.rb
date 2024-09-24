@@ -60,7 +60,10 @@ RSpec.describe Biker do
     end
 
     it 'cannot log a ride if the max distance is greater than the rider\s max distance' do
-      expect(true).to eq(false)
+      expect(@biker2.rides).to eq({})
+      @biker2.learn_terrain!(:hills)
+      @biker2.log_ride(@ride2, 10.1)
+      expect(@biker2.rides).to eq({})
     end
   end
 
