@@ -5,6 +5,8 @@ RSpec.describe Biker do
     before(:each) do
         @biker = Biker.new("Kenny", 30)
         @biker2 = Biker.new("Athena", 15)
+        @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills}) 
+        @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
     end
 
     describe '#initialize' do
@@ -54,29 +56,54 @@ RSpec.describe Biker do
         it 'can log rides' do
             @biker.log_ride(@ride1, 92.5)
             
-            expect(@biker.rides).to be_a(Hash)
+            expect(@biker.rides).to eq({})
         end
 
         it 'will not log a ride if the biker has not learned the terrain' do
+            # require 'pry';binding.pry
             expect(@biker2.log_ride(@ride1, 97.0)).to eq(false)
+            expect(@biker2.log_ride(@ride2, 67.0)).to eq(false)
             expect(@biker2.rides).to eq({})
         end
+
+        it 'logs rides once a biker has learned the terrain' do
+            @biker2.learn_terrain!(:gravel)
+            @biker2.learn_terrain!(:hills)
+            @biker2.log_ride(@ride2, 67.0)
+
+            expect(@biker2.rides).to eq({@ride2 => [67.0]})
+        end
+
+        it 'can log multiple rides' do
+            @biker.log_ride(@ride1, 92.5)
+            @biker.log_ride(@ride1, 91.1)
+            @biker.log_ride(@ride2, 60.9)
+        
+            @biker.log_ride(@ride2, 61.6)
+        end
+
+        it 'does not log rides if they exceed a bikers max distance' do
+            expect(@biker2.log_ride(@ride1, 95.0)).to eq(false)
+        end
+
     end
 
     describe '#timing rides' do
         before(:each) do
-            @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills}) 
-            @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
             @biker.learn_terrain!(:gravel)
             @biker.learn_terrain!(:hills)
         end
 
         it 'identifies a bikers personal record' do
         @biker.log_ride(@ride1, 92.5)
+
+        expect(@biker.personal_record(@ride1)).to eq(92.5)
+        end
+
+        it 'updates the bikers personal record' do
         @biker.log_ride(@ride1, 91.1)
 
         expect(@biker.personal_record(@ride1)).to eq(91.1)
         end
     end
-
 end
