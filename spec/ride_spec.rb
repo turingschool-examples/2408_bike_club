@@ -20,7 +20,7 @@ RSpec.describe Ride do
         end
 
         it 'can be a loop' do 
-            expect(@ride2.loop).to eq(true)
+            expect(@ride2.loop?).to eq(true)
             expect(@ride2.distance).to eq(14.9)
             expect(@ride2.total_diatance).to eq(14.9)
         end
