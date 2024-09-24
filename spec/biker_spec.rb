@@ -21,4 +21,8 @@ RSpec.describe Biker do
       expect(@biker.max_distance).to eq(30)
     end
   end
+
+  it 'can hold rides in a hash' do
+    expect(@biker.rides).to eq({})
+  end
 end
