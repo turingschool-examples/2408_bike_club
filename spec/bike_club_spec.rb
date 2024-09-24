@@ -41,5 +41,5 @@ RSpec.describe BikeClub do
     expect(@biker2.rides).to eq({ @ride2 => [65.0] })
 
     expect(@bike_club.most_rides).to eq(@biker)
-  end.
+  end
 end
