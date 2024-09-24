@@ -9,10 +9,13 @@ RSpec.describe BikeClub do
     @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
     @biker1 = Biker.new("Kenny", 30)
     @biker2 = Biker.new("Wally", 15)
+    @biker3 = Biker.new("Dahlia", 100)
     @biker1.learn_terrain!(:gravel)
     @biker1.learn_terrain!(:hills)
     @biker2.learn_terrain!(:gravel)
     @biker2.learn_terrain!(:hills)
+    @biker3.learn_terrain!(:gravel)
+    @biker3.learn_terrain!(:hills)
   end
 
   describe '#initialize' do
@@ -50,13 +53,13 @@ RSpec.describe BikeClub do
     it 'can return the biker with the best time' do
       @biker1.log_ride(@ride1, 100.1)
       @biker1.log_ride(@ride2, 44.4)
-      @biker2.log_ride(@ride1, 88.8)
-      @biker2.log_ride(@ride2, 63.0)
-      @biker2.log_ride(@ride2, 61.9)
-      @biker2.log_ride(@ride2, 62.6)
+      @biker3.log_ride(@ride1, 88.8)
+      @biker3.log_ride(@ride2, 63.0)
+      @biker3.log_ride(@ride2, 61.9)
+      @biker3.log_ride(@ride2, 62.6)
       @bike_club1.add_biker(@biker1)
-      @bike_club1.add_biker(@biker2)
-      expect(@bike_club1.best_time(@ride1)).to eq(@biker2)
+      @bike_club1.add_biker(@biker3)
+      expect(@bike_club1.best_time(@ride1)).to eq(@biker3)
       expect(@bike_club1.best_time(@ride2)).to eq(@biker1)
     end
   end

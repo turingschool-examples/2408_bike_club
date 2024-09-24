@@ -30,6 +30,8 @@ class BikeClub
   end
 
   def best_time(ride)
-
+    @bikers.min_by do |biker|
+      biker.personal_record(ride)
+    end
   end
 end
