@@ -28,4 +28,8 @@ class BikeClub
     end
     max_biker
   end
+
+  def best_time(ride)
+
+  end
 end
