@@ -7,7 +7,7 @@ RSpec.describe Biker do
     @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
     @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
     @biker1 = Biker.new("Kenny", 30)
-    @biker2 = Biker.new("Wally", 12)
+    @biker2 = Biker.new("Wally", 15)
   end
 
   describe '#initialize' do
@@ -52,17 +52,17 @@ RSpec.describe Biker do
 
     it 'cannot log a ride if the biker does not know the terrain' do
       expect(@biker2.rides).to eq({})
-      @biker2.log_ride(@ride1, 92.5)
+      @biker2.log_ride(@ride2, 92.5)
       expect(@biker2.rides).to eq({})
-      @biker2.learn_terrain!(:hills)
-      @biker2.log_ride(@ride1, 92.5)
-      expect(@biker2.rides).to eq({@ride1 => [92.5]})
+      @biker2.learn_terrain!(:gravel)
+      @biker2.log_ride(@ride2, 92.5)
+      expect(@biker2.rides).to eq({@ride2 => [92.5]})
     end
 
     it 'cannot log a ride if the max distance is greater than the rider\s max distance' do
       expect(@biker2.rides).to eq({})
       @biker2.learn_terrain!(:hills)
-      @biker2.log_ride(@ride2, 10.1)
+      @biker2.log_ride(@ride1, 10.1)
       expect(@biker2.rides).to eq({})
     end
   end
