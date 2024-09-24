@@ -62,4 +62,16 @@ RSpec.describe BikeClub do
       expect(@club.best_time(@ride2)).to eq(@biker)
     end
   end
+
+  describe '#bikers_eligible' do
+    it 'finds bikers eligible to ride a ride by terrain' do
+      @biker.learn_terrain!(:hills)
+      @biker2.learn_terrain!(:gravel)
+
+      @club.add_biker(@biker)
+      @club.add_biker(@biker2)
+
+      expect(@club.bikers_eligible(@ride2)).to eq([@biker2])
+    end
+  end
 end
