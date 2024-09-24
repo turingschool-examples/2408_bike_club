@@ -11,7 +11,7 @@ class Ride
         @is_loop
     end
     
-    def total_diatance
+    def total_distance
         if @is_loop == true
             @distance
         else
