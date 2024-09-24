@@ -19,6 +19,11 @@ describe '#bike club' do
         expect(@bike_club).to be_an_instance_of(BikeClub)
         end
 
+    it 'can return the club name' do
+
+        expect(@bike_club.name).to eq("Ride or Die")
+    end
+    
     it 'can can add bikers in the club' do
         @bike_club.add_biker(@biker1)
         @bike_club.add_biker(@biker2)
