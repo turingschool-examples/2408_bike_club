@@ -16,13 +16,13 @@ RSpec.describe Ride do
             expect(@ride1.distance).to eq(10.7)
             expect(@ride1.terrain).to eq(:hills)
             expect(@ride1.loop?).to eq(false)
-            expect(@ride1.total_diatance).to eq(21.4)
+            expect(@ride1.total_distance).to eq(21.4)
         end
 
         it 'can be a loop' do 
             expect(@ride2.loop?).to eq(true)
             expect(@ride2.distance).to eq(14.9)
-            expect(@ride2.total_diatance).to eq(14.9)
+            expect(@ride2.total_distance).to eq(14.9)
         end
     end
 end
