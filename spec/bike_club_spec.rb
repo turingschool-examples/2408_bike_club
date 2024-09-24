@@ -66,7 +66,10 @@ RSpec.describe BikeClub do
 
   describe '#bikers_eligible' do
     it 'can return an array of eligible bikers for a ride' do
-      expect(@bike_club1.bikers_eligible).to eq([@biker1, @biker3])
+      @bike_club1.add_biker(@biker1)
+      @bike_club1.add_biker(@biker2)
+      @bike_club1.add_biker(@biker3)
+      expect(@bike_club1.bikers_eligible(@ride1)).to eq([@biker1, @biker3])
     end
   end
 
