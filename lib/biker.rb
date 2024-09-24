@@ -18,4 +18,10 @@ class Biker
       @rides[ride] << time
     end
   end
+
+  def personal_record(ride)
+    return false unless @rides.key?(ride)
+
+    @rides[ride].min
+  end
 end
