@@ -46,6 +46,8 @@ RSpec.describe Biker do
         end
 
         it 'can log rides' do 
+            @biker1.learn_terrain!(:hills)
+            @biker1.learn_terrain!(:gravel)
             @biker1.log_ride(@ride1, 92.5)
             @biker1.log_ride(@ride1, 92.5)
             @biker1.log_ride(@ride1, 91.1)
@@ -53,6 +55,11 @@ RSpec.describe Biker do
             @biker1.log_ride(@ride2, 61.6)
             expect(@biker1.rides).to be_an_instance_of(Hash)
             expect(@biker1.rides.keys).to include(@ride1, @ride2)
+            expect(@biker2.rides).to eq({})
+        end
+
+        it 'cant bike further than max distance' do
+            @biker2.log_ride(@ride1, 100)
             expect(@biker2.rides).to eq({})
         end
     end
